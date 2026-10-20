@@ -1,0 +1,75 @@
+{
+    "valid": [
+        {
+            "name": "Mid-game",
+            "input": {"inning": 6, "half": "B", "outs": 2, "bases": "010", "score_diff": -2},
+            "expected": "6|B|2|010|-2"
+        },
+        {
+            "name": "Start of game",
+            "input": {"inning": 1, "half": "T", "outs": 0, "bases": "000", "score_diff": 0},
+            "expected": "1|T|0|000|0"
+        },
+        {
+            "name": "Home trails by 11",
+            "input": {"inning": 9, "half": "B", "outs": 2, "bases": "111", "score_diff": -11},
+            "expected": "9|B|2|111|-10"
+        },
+        {
+            "name": "Home leads by 11",
+            "input": {"inning": 9, "half": "T", "outs": 2, "bases": "111", "score_diff": 11},
+            "expected": "9|T|2|111|10"
+        },
+        {
+            "name": "Extra innings",
+            "input": {"inning": 10, "half": "T", "outs": 1, "bases": "101", "score_diff": -1},
+            "expected": "10|T|1|101|-1"
+        }
+    ],
+    "invalid": [
+        {
+            "name": "Inning less than 1",
+            "input": {"inning": 0, "half": "T", "outs": 2, "bases": "010", "score_diff": -2}
+        },
+        {
+            "name": "Invalid Half value",
+            "input": {"inning": 1, "half": "A", "outs": 0, "bases": "000", "score_diff": 0}
+        },
+        {
+            "name": "Outs less than 0",
+            "input": {"inning": 1, "half": "T", "outs": -1, "bases": "000", "score_diff": 0}
+        },
+        {
+            "name": "Outs greater than 2",
+            "input": {"inning": 1, "half": "T", "outs": 3, "bases": "000", "score_diff": 0}
+        },
+        {
+            "name": "Bases length less than 3",
+            "input": {"inning": 1, "half": "T", "outs": 0, "bases": "00", "score_diff": 0}
+        },
+        {
+            "name": "Bases length greater than 3",
+            "input": {"inning": 1, "half": "T", "outs": 0, "bases": "0000", "score_diff": 0}
+        },
+        {
+            "name": "Invalid bases characters",
+            "input": {"inning": 1, "half": "T", "outs": 0, "bases": "284", "score_diff": 0}
+        },
+        {
+            "name": "Home leads in Top 1st",
+            "input": {"inning": 1, "half": "T", "outs": 0, "bases": "000", "score_diff": 1}
+        },
+        {
+            "name": "Home leads in Bot 9th",
+            "input": {"inning": 9, "half": "B", "outs": 0, "bases": "000", "score_diff": 1}
+        },
+        {
+            "name": "Home leads in Top of Extras",
+            "input": {"inning": 10, "half": "T", "outs": 0, "bases": "000", "score_diff": 1}
+        },
+        {
+            "name": "Home leads in Bottom of Extras",
+            "input": {"inning": 10, "half": "B", "outs": 0, "bases": "000", "score_diff": 1}
+        }
+    ]
+}
