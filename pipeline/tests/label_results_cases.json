@@ -7,7 +7,7 @@
                 {"gid": "G1", "top_bot": 1, "score_v": 0, "score_h": 0, "runs": 3},
                 {"gid": "G1", "top_bot": 0, "score_v": 2, "score_h": 3, "runs": 0}
             ],
-            "expected": {"G1": "won"}
+            "expected": {"G1": true}
         },
         {
             "name": "Away wins, game ends after last out via Bot 9th",
@@ -15,7 +15,7 @@
                 {"gid": "G2", "top_bot": 0, "score_v": 3, "score_h": 2, "runs": 0},
                 {"gid": "G2", "top_bot": 1, "score_v": 3, "score_h": 2, "runs": 0}
             ],
-            "expected": {"G2": "lost"}
+            "expected": {"G2": false}
         },
         {
             "name": "Walk-off: runs on last play decide the winner",
@@ -24,7 +24,7 @@
                 {"gid": "G3", "top_bot": 1, "score_v": 2, "score_h": 0, "runs": 2},
                 {"gid": "G3", "top_bot": 1, "score_v": 2, "score_h": 2, "runs": 1}
             ],
-            "expected": {"G3": "won"}
+            "expected": {"G3": true}
         },
         {
             "name": "Away scores on last play",
@@ -32,7 +32,7 @@
                 {"gid": "G4", "top_bot": 0, "score_v": 1, "score_h": 5, "runs": 0},
                 {"gid": "G4", "top_bot": 0, "score_v": 1, "score_h": 5, "runs": 2}
             ],
-            "expected": {"G4": "won"}
+            "expected": {"G4": true}
         },
         {
             "name": "Test with multiple games",
@@ -46,7 +46,7 @@
                 {"gid": "G8", "top_bot": 0, "score_v": 3, "score_h": 2, "runs": 0},
                 {"gid": "G8", "top_bot": 1, "score_v": 3, "score_h": 2, "runs": 0}
             ],
-            "expected": {"G6": "won", "G7": "won", "G8": "lost"}
+            "expected": {"G6": true, "G7": true, "G8": false}
         },
         {
             "name": "Tied game is dropped",
