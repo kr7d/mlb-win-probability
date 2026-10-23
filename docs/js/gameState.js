@@ -8,7 +8,7 @@ export const state = {
 };
 
 export function toStateKeyInput(state) {
-    const bases = "";
+    let bases = "";
     for (let i = 0; i < state.runners.length; i++) {
         bases = state.runners[i] ? bases + "1" : bases + "0";
     }
