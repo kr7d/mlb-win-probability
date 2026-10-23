@@ -1,0 +1,64 @@
+{
+    "cases": [
+        {
+            "name": "3 identical states with 2 home wins",
+            "input": [
+                {"inning": 3, "half": "T", "outs": 0, "bases": "010", "score_diff": 2, "home_win": true},
+                {"inning": 3, "half": "T", "outs": 0, "bases": "010", "score_diff": 2, "home_win": true},
+                {"inning": 3, "half": "T", "outs": 0, "bases": "010", "score_diff": 2, "home_win": false}
+            ],
+            "expected": {
+                "3|T|0|010|2": {"occurrences": 3, "home_wins": 2}
+            }
+        },
+        {
+            "name": "Merge blowouts: Score_diff >= 10",
+            "input": [
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 10, "home_win": true},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 15, "home_win": false},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 21, "home_win": true}
+            ],
+            "expected": {
+                "5|T|1|111|10": {"occurrences": 3, "home_wins": 2}
+            }
+        },
+        {
+            "name": "Merge blowouts: Score_diff <= -10",
+            "input": [
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": -10, "home_win": false},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": -15, "home_win": true},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": -21, "home_win": false}
+            ],
+            "expected": {
+                "5|T|1|111|-10": {"occurrences": 3, "home_wins": 1}
+            }
+        },
+        {
+            "name": "Merge blowout, but not with non-blowout",
+            "input": [
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 10, "home_win": true},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 15, "home_win": false},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": -2, "home_win": false}
+            ],
+            "expected": {
+                "5|T|1|111|10": {"occurrences": 2, "home_wins": 1},
+                "5|T|1|111|-2": {"occurrences": 1, "home_wins": 0}
+            }
+        },
+        {
+            "name": "Slightly different entries",
+            "input": [
+                {"inning": 5, "half": "T", "outs": 1, "bases": "111", "score_diff": 2, "home_win": true},
+                {"inning": 5, "half": "T", "outs": 1, "bases": "110", "score_diff": 2, "home_win": true},
+                {"inning": 5, "half": "B", "outs": 1, "bases": "111", "score_diff": 2, "home_win": true},
+                {"inning": 5, "half": "B", "outs": 2, "bases": "111", "score_diff": 2, "home_win": false}
+            ],
+            "expected": {
+                "5|T|1|111|2": {"occurrences": 1, "home_wins": 1},
+                "5|T|1|110|2": {"occurrences": 1, "home_wins": 1},
+                "5|B|1|111|2": {"occurrences": 1, "home_wins": 1},
+                "5|B|2|111|2": {"occurrences": 1, "home_wins": 0}
+            }
+        }
+    ]
+}
