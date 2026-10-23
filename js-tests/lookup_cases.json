@@ -1,0 +1,25 @@
+{
+    "valid": [
+        {
+            "name": "Small sample size",
+            "input": "1|B|0|000|-10",
+            "expected": 0
+        },
+        {
+            "name": "Medium sample size",
+            "input": "1|B|0|000|-3",
+            "expected": 0.25
+        },
+        {
+            "name": "Large sample size",
+            "input": "1|B|0|000|0",
+            "expected": 0.60
+        }
+    ],
+    "invalid": [
+        {
+            "name": "State key doesn't exist",
+            "input": "19|T|0|000|0"
+        }
+    ]
+}

@@ -56,7 +56,6 @@ def main() -> None:
     df = drop_no_plays(df)
     df = label_results(df)
     df = to_states(df)
-    print(df)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True) # Create folder if it doesn't exist
     df.to_parquet(OUT_PATH, index=False)
 
