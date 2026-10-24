@@ -12,6 +12,12 @@ const scores = {
     vPlusBtn: document.getElementById("score_v_plus_btn")
 }
 
+const outs = {
+    outsMinusBtn: document.getElementById("outs_minus_btn"),
+    outsLabel: document.getElementById("outs_label"),
+    outsPlusBtn: document.getElementById("outs_plus_btn")
+}
+
 scores.hMinusBtn.addEventListener("click", () => {
     state.homeScore = state.homeScore > 0 ? state.homeScore - 1 : state.homeScore;
     scores.hLabel.textContent = state.homeScore;
@@ -30,6 +36,16 @@ scores.vMinusBtn.addEventListener("click", () => {
 scores.vPlusBtn.addEventListener("click", () => {
     state.awayScore = state.awayScore < 99 ? state.awayScore + 1 : state.awayScore;
     scores.vLabel.textContent = state.awayScore;
+});
+
+outs.outsMinusBtn.addEventListener("click", () => {
+    state.outs = state.outs > 0 ? state.outs - 1 : state.outs;
+    outs.outsLabel.textContent = state.outs;
+});
+
+outs.outsPlusBtn.addEventListener("click", () => {
+    state.outs = state.outs < 2 ? state.outs + 1 : state.outs;
+    outs.outsLabel.textContent = state.outs;
 });
 
 export function calculateProb() {
