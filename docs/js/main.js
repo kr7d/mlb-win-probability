@@ -9,13 +9,10 @@ const inn = {
     innPlusBtn: document.getElementById("inn_plus_btn")
 }
 
-const scores = {
-    hMinusBtn: document.getElementById("score_h_minus_btn"),
-    hLabel: document.getElementById("score_h_label"),
-    hPlusBtn: document.getElementById("score_h_plus_btn"),
-    vMinusBtn: document.getElementById("score_v_minus_btn"),
-    vLabel: document.getElementById("score_v_label"),
-    vPlusBtn: document.getElementById("score_v_plus_btn")
+const diff = {
+    minusBtn: document.getElementById("diff_minus_btn"),
+    label: document.getElementById("diff_label"),
+    plusBtn: document.getElementById("diff_plus_btn"),
 }
 
 const outs = {
@@ -64,27 +61,15 @@ inn.innPlusBtn.addEventListener("click", () => {
     displayProb()
 });
 
-scores.hMinusBtn.addEventListener("click", () => {
-    state.homeScore = state.homeScore > 0 ? state.homeScore - 1 : state.homeScore;
-    scores.hLabel.textContent = state.homeScore;
+diff.minusBtn.addEventListener("click", () => {
+    state.awayScore = state.homeScore - state.awayScore > -99 ? state.awayScore + 1 : state.awayScore;
+    diff.label.textContent = state.homeScore - state.awayScore;
     displayProb()
 });
 
-scores.hPlusBtn.addEventListener("click", () => {
-    state.homeScore = state.homeScore < 99 ? state.homeScore + 1 : state.homeScore;
-    scores.hLabel.textContent = state.homeScore;
-    displayProb()
-});
-
-scores.vMinusBtn.addEventListener("click", () => {
-    state.awayScore = state.awayScore > 0 ? state.awayScore - 1 : state.awayScore;
-    scores.vLabel.textContent = state.awayScore;
-    displayProb()
-});
-
-scores.vPlusBtn.addEventListener("click", () => {
-    state.awayScore = state.awayScore < 99 ? state.awayScore + 1 : state.awayScore;
-    scores.vLabel.textContent = state.awayScore;
+diff.plusBtn.addEventListener("click", () => {
+    state.homeScore = state.homeScore - state.awayScore < 99 ? state.homeScore + 1 : state.homeScore;
+    diff.label.textContent = state.homeScore - state.awayScore;
     displayProb()
 });
 
