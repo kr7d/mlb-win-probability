@@ -37,7 +37,7 @@ function displayProb() {
         stateKey = buildStateKey(stateKeyInput);
     } catch (error) {
         console.warn("Failed to build state key:", error.message);
-        result.winProb.textContent = `Home win: N/A%`;
+        result.winProb.textContent = `Home win probability: N/A%`;
         result.homeWins.textContent = `Home wins: N/A`;
         result.occurrences.textContent = `Occurrences: N/A`;
         return;
@@ -48,13 +48,13 @@ function displayProb() {
         [homeWins, occurrences] = lookup(DATA, stateKey);
     } catch (error) {
         console.warn("Failed to lookup state key:", error.message);
-        result.winProb.textContent = `Home win: N/A%`;
+        result.winProb.textContent = `Home win probability: N/A%`;
         result.homeWins.textContent = `Home wins: N/A`;
         result.occurrences.textContent = `Occurrences: N/A`;
         return;
     }
     const prob = Math.round(homeWins/occurrences*10000)/100;
-    result.winProb.textContent = `Home win: ${prob}%`;
+    result.winProb.textContent = `Home win probability: ${prob}%`;
     result.homeWins.textContent = `Home wins: ${homeWins}`;
     result.occurrences.textContent = `Occurrences: ${occurrences}`;
 }
