@@ -8,6 +8,13 @@
   <h1>MLB Win Expectancy Calculator</h1>
 
   <div class="quantity">
+    <label>Inning</label>
+    <button type="button" class="qty-btn" id="inn_minus_btn">-</button>
+    <label class="score-label" id="inn_label">1</label>
+    <button type="button" class="qty-btn" id="inn_plus_btn">+</button>
+  </div>
+
+  <div class="quantity">
     <label>Home score</label>
     <button type="button" class="qty-btn" id="score_h_minus_btn">-</button>
     <label class="score-label" id="score_h_label">0</label>
@@ -27,6 +34,14 @@
         <label class="score-label" id="outs_label">0</label>
         <button type="button" class="qty-btn" id="outs_plus_btn">+</button>
   </div>
+
+  <form>
+    <input type="radio" id="top" name="half" value="T" checked>
+    <label for="top">Top</label>
+
+    <input type="radio" id="bottom" name="half" value="B">
+    <label for="bottom">Bottom</label>
+  </form>
 
   <script src="js/main.js" type="module"></script>
 </body>

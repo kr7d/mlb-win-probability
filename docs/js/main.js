@@ -3,6 +3,12 @@ import { buildStateKey, lookup } from "./lookup.js";
 
 const DATA = await fetch("data/win_expectancy.json").then(r => r.json());
 
+const inn = {
+    innMinusBtn: document.getElementById("inn_minus_btn"),
+    innLabel: document.getElementById("inn_label"),
+    innPlusBtn: document.getElementById("inn_plus_btn")
+}
+
 const scores = {
     hMinusBtn: document.getElementById("score_h_minus_btn"),
     hLabel: document.getElementById("score_h_label"),
@@ -17,6 +23,18 @@ const outs = {
     outsLabel: document.getElementById("outs_label"),
     outsPlusBtn: document.getElementById("outs_plus_btn")
 }
+
+const halfBtns = document.querySelectorAll('input[name="half"]');
+
+inn.innMinusBtn.addEventListener("click", () => {
+    state.inning = state.inning > 1 ? state.inning - 1 : state.inning;
+    inn.innLabel.textContent = state.inning;
+});
+
+inn.innPlusBtn.addEventListener("click", () => {
+    state.inning = state.inning < 99 ? state.inning + 1 : state.inning;
+    inn.innLabel.textContent = state.inning;
+});
 
 scores.hMinusBtn.addEventListener("click", () => {
     state.homeScore = state.homeScore > 0 ? state.homeScore - 1 : state.homeScore;
@@ -46,6 +64,14 @@ outs.outsMinusBtn.addEventListener("click", () => {
 outs.outsPlusBtn.addEventListener("click", () => {
     state.outs = state.outs < 2 ? state.outs + 1 : state.outs;
     outs.outsLabel.textContent = state.outs;
+});
+
+halfBtns.forEach(radio => {
+    radio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            state.half = event.target.value;
+        }
+    });
 });
 
 export function calculateProb() {
