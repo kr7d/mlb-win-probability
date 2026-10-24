@@ -3,17 +3,17 @@
         {
             "name": "Small sample size",
             "input": "1|B|0|000|-10",
-            "expected": 0
+            "expected": [0, 2]
         },
         {
             "name": "Medium sample size",
             "input": "1|B|0|000|-3",
-            "expected": 0.25
+            "expected": [19, 75]
         },
         {
             "name": "Large sample size",
             "input": "1|B|0|000|0",
-            "expected": 0.60
+            "expected": [1076, 1794]
         }
     ],
     "invalid": [

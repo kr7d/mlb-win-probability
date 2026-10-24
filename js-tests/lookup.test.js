@@ -11,7 +11,7 @@ const CASES = JSON.parse(
 
 for (const c of CASES.valid) {
     test(c.name, () => {
-        assert.equal(Math.round(lookup(MOCK_DATA, c.input)*100)/100, c.expected);
+        assert.deepStrictEqual(lookup(MOCK_DATA, c.input), c.expected);
     });
 }
 
