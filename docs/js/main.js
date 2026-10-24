@@ -26,12 +26,28 @@ const outs = {
 
 const halfBtns = document.querySelectorAll('input[name="half"]');
 const runnersBtns = document.querySelectorAll('input[name="runners"]');
+const homeWinProb = document.getElementById("home-win-prob")
 
 function displayProb() {
     const stateKeyInput = toStateKeyInput(state);
-    const stateKey = buildStateKey(stateKeyInput);
-    const prob = Math.round(lookup(DATA, stateKey)*10000)/100;
-    document.getElementById("home-win-prob").textContent = `Home win: ${prob}%`;
+    let stateKey;
+    try {
+        stateKey = buildStateKey(stateKeyInput);
+    } catch (error) {
+        console.warn("Failed to build state key:", error.message);
+        homeWinProb.textContent = `Home win: N/A`;
+        return;
+    }
+    let prob;
+    try {
+        prob = lookup(DATA, stateKey);
+    } catch (error) {
+        console.warn("Failed to lookup state key:", error.message);
+        homeWinProb.textContent = `Home win: N/A`;
+        return;
+    }
+    prob = Math.round(prob*10000)/100;
+    homeWinProb.textContent = `Home win: ${prob}%`;
 }
 
 displayProb(); // Initialize probability on page load
