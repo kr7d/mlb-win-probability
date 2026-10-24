@@ -32,10 +32,10 @@ export function buildStateKey({ inning, half, outs, bases, score_diff }) {
     return `${inning}|${half}|${outs}|${bases}|${score_diff}`;
 }
 
-// Fetch the win-prob of a scenario given a stateKey
+// Fetch home wins and #occurrences of a given state (if state exists)
 export function lookup(table, stateKey) {
     if (!table[stateKey]) {
         throw new Error(`stateKey not found. Got: ${stateKey}`);
     }
-    return table[stateKey]["home_wins"] / table[stateKey]["occurrences"];
+    return [table[stateKey]["home_wins"], table[stateKey]["occurrences"]];
 }

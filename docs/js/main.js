@@ -3,6 +3,12 @@ import { buildStateKey, lookup } from "./lookup.js";
 
 const DATA = await fetch("data/win_expectancy.json").then(r => r.json());
 
+const result = {
+    winProb: document.getElementById("home-win-prob"),
+    homeWins: document.getElementById("home-wins"),
+    occurrences: document.getElementById("occurrences")
+}
+
 const inn = {
     innMinusBtn: document.getElementById("inn_minus_btn"),
     innLabel: document.getElementById("inn_label"),
@@ -23,7 +29,6 @@ const outs = {
 
 const halfBtns = document.querySelectorAll('input[name="half"]');
 const runnersBtns = document.querySelectorAll('input[name="runners"]');
-const homeWinProb = document.getElementById("home-win-prob")
 
 function displayProb() {
     const stateKeyInput = toStateKeyInput(state);
@@ -32,19 +37,26 @@ function displayProb() {
         stateKey = buildStateKey(stateKeyInput);
     } catch (error) {
         console.warn("Failed to build state key:", error.message);
-        homeWinProb.textContent = `Home win: N/A`;
+        result.winProb.textContent = `Home win: N/A%`;
+        result.homeWins.textContent = `Home wins: N/A`;
+        result.occurrences.textContent = `Occurrences: N/A`;
         return;
     }
-    let prob;
+    let homeWins;
+    let occurrences;
     try {
-        prob = lookup(DATA, stateKey);
+        [homeWins, occurrences] = lookup(DATA, stateKey);
     } catch (error) {
         console.warn("Failed to lookup state key:", error.message);
-        homeWinProb.textContent = `Home win: N/A`;
+        result.winProb.textContent = `Home win: N/A%`;
+        result.homeWins.textContent = `Home wins: N/A`;
+        result.occurrences.textContent = `Occurrences: N/A`;
         return;
     }
-    prob = Math.round(prob*10000)/100;
-    homeWinProb.textContent = `Home win: ${prob}%`;
+    const prob = Math.round(homeWins/occurrences*10000)/100;
+    result.winProb.textContent = `Home win: ${prob}%`;
+    result.homeWins.textContent = `Home wins: ${homeWins}`;
+    result.occurrences.textContent = `Occurrences: ${occurrences}`;
 }
 
 displayProb(); // Initialize probability on page load
