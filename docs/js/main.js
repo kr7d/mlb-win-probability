@@ -74,14 +74,16 @@ inn.innPlusBtn.addEventListener("click", () => {
 });
 
 diff.minusBtn.addEventListener("click", () => {
-    state.awayScore = state.homeScore - state.awayScore > -99 ? state.awayScore + 1 : state.awayScore;
+    state.awayScore = state.homeScore - state.awayScore > -10 ? state.awayScore + 1 : state.awayScore;
     diff.label.textContent = state.homeScore - state.awayScore;
+    diff.label.textContent = state.homeScore - state.awayScore <= -10 ? `${diff.label.textContent}+` : diff.label.textContent;
     displayProb()
 });
 
 diff.plusBtn.addEventListener("click", () => {
-    state.homeScore = state.homeScore - state.awayScore < 99 ? state.homeScore + 1 : state.homeScore;
+    state.homeScore = state.homeScore - state.awayScore < 10 ? state.homeScore + 1 : state.homeScore;
     diff.label.textContent = state.homeScore - state.awayScore;
+    diff.label.textContent = state.homeScore - state.awayScore >= 10 ? `${diff.label.textContent}+` : diff.label.textContent;
     displayProb()
 });
 
