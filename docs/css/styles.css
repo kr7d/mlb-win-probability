@@ -18,3 +18,11 @@
     user-select: none;
     transition: background-color 0.2-ease;
 }
+
+.score-label {
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    width: 25px;
+    border-radius: 4px
+}
