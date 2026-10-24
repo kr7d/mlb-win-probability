@@ -28,12 +28,13 @@ const halfBtns = document.querySelectorAll('input[name="half"]');
 const runnersBtns = document.querySelectorAll('input[name="runners"]');
 
 function displayProb() {
-
     const stateKeyInput = toStateKeyInput(state);
     const stateKey = buildStateKey(stateKeyInput);
     const prob = Math.round(lookup(DATA, stateKey)*10000)/100;
     document.getElementById("home-win-prob").textContent = `Home win: ${prob}%`;
 }
+
+displayProb(); // Initialize probability on page load
 
 inn.innMinusBtn.addEventListener("click", () => {
     state.inning = state.inning > 1 ? state.inning - 1 : state.inning;
