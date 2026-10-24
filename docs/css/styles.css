@@ -19,10 +19,10 @@
     transition: background-color 0.2-ease;
 }
 
-.score-label {
+.qty-label {
     display: block;
     text-align: center;
     background-color: #fff;
-    width: 25px;
+    width: 40px;
     border-radius: 4px
 }
