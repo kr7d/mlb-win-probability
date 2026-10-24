@@ -25,6 +25,7 @@ const outs = {
 }
 
 const halfBtns = document.querySelectorAll('input[name="half"]');
+const runnersBtns = document.querySelectorAll('input[name="runners"]');
 
 inn.innMinusBtn.addEventListener("click", () => {
     state.inning = state.inning > 1 ? state.inning - 1 : state.inning;
@@ -71,6 +72,12 @@ halfBtns.forEach(radio => {
         if (event.target.checked) {
             state.half = event.target.value;
         }
+    });
+});
+
+runnersBtns.forEach(checkbox => {
+    checkbox.addEventListener("change", (event) => {
+        state.runners[event.target.value - 1] = event.target.checked;
     });
 });
 
