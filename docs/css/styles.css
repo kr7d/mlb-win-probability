@@ -1,3 +1,9 @@
+.title-section {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .quantity {
     display: inline-flex;
     padding-left: 10px;
