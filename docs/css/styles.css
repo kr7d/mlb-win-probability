@@ -32,3 +32,17 @@
     width: 40px;
     border-radius: 4px
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    color: #909090;
+}
