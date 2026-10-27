@@ -5,7 +5,7 @@ import pandas as pd
 
 IN_PATH = Path(__file__).resolve().parents[1] / "data" / "raw"
 OUT_PATH = Path(__file__).resolve().parents[1] / "data" / "processed" / "states.parquet"
-COLS = ["gid", "event", "inning", "top_bot", "score_v", "score_h", "outs_pre", "br1_pre", "br2_pre", "br3_pre", "runs"]
+COLS = ["gid", "event", "inning", "top_bot", "vis_home", "score_v", "score_h", "outs_pre", "br1_pre", "br2_pre", "br3_pre", "runs"]
 
 def load_plays(path: Path) -> pd.DataFrame:
     files = list(path.glob("*plays.csv"))
@@ -18,6 +18,13 @@ def load_plays(path: Path) -> pd.DataFrame:
 
 def drop_no_plays(df: pd.DataFrame) -> pd.DataFrame:
     df = df[df["event"] != "NP"]
+    return df
+
+# Some rare games have the home team batting first, so we need to flip our definitions of home and away
+def flipHome(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    flipped = df["vis_home"] != df["top_bot"]
+    df.loc[flipped, ["score_v", "score_h"]] = df.loc[flipped, ["score_h", "score_v"]].values
     return df
 
 # label whether each state resulted in the home team winning
@@ -59,6 +66,7 @@ def to_states(df: pd.DataFrame) -> pd.DataFrame:
 def main() -> None:
     df = load_plays(IN_PATH)
     df = drop_no_plays(df)
+    df = flipHome(df)
     df = label_results(df)
     df = to_states(df)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True) # Create folder if it doesn't exist
