@@ -3,13 +3,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-IN_PATH = Path(__file__).resolve().parents[1] / "data" / "raw" / "2025plays.csv"
+IN_PATH = Path(__file__).resolve().parents[1] / "data" / "raw"
 OUT_PATH = Path(__file__).resolve().parents[1] / "data" / "processed" / "states.parquet"
 COLS = ["gid", "event", "inning", "top_bot", "score_v", "score_h", "outs_pre", "br1_pre", "br2_pre", "br3_pre", "runs"]
 
 def load_plays(path: Path) -> pd.DataFrame:
-    df = pd.read_csv(path, usecols=COLS, engine="pyarrow")
-    return df
+    files = list(path.glob("*plays.csv"))
+    if not files:
+        raise FileNotFoundError()
+    df_list = []
+    for file in files:
+        df_list.append(pd.read_csv(file, usecols=COLS, engine="pyarrow"))
+    return pd.concat(df_list, axis=0, ignore_index=True)
 
 def drop_no_plays(df: pd.DataFrame) -> pd.DataFrame:
     df = df[df["event"] != "NP"]
