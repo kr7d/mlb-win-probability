@@ -3,7 +3,7 @@
 ## About
 Web application that calculates the home team's win probability based on a user-inputted scenario.
 
-Try the calculator out [here!](https://kr7d.github.io/win-expectancy/)
+Try the calculator out [here!](https://kr7d.github.io/mlb-win-probability/)
 
 ## Inputs
 | Parameter | Description | Constraints |
